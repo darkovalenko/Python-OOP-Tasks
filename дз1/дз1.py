@@ -2,7 +2,6 @@ import math
 from abc import ABC, abstractmethod
 
 
-# --- Етап 1: Базовий абстрактний клас ---
 class Shape(ABC):
     @abstractmethod
     def get_area(self):
@@ -19,17 +18,14 @@ class Triangle(Shape):
         self.a, self.b, self.c = a, b, c
 
     def _is_valid(self):
-        # Прихована функція для перевірки, чи існує трикутник
         return (self.a + self.b > self.c) and (self.a + self.c > self.b) and (self.b + self.c > self.a)
 
     def get_perimeter(self):
-        # Якщо трикутник неможливий, його периметр не бере участь у змаганні
         if not self._is_valid():
             return 0
         return self.a + self.b + self.c
 
     def get_area(self):
-        # Якщо трикутник неможливий, мовчки повертаємо площу 0
         if not self._is_valid():
             return 0
 
@@ -109,7 +105,7 @@ class Circle(Shape):
         return f"Круг (радіус: {self.r})"
 
 
-# --- Етап 3: Читання файлу ---
+
 def load_shapes_from_file(filename):
     shapes_list = []
     try:
@@ -145,9 +141,7 @@ def load_shapes_from_file(filename):
     return shapes_list
 
 
-# --- Етап 4 та 5: Головна логіка ---
 def main():
-    # Список ваших файлів
     files_to_process = ["input01.txt", "input02.txt", "input03.txt"]
 
     for filename in files_to_process:
@@ -159,20 +153,18 @@ def main():
             print(f"Не вдалося обробити фігури з файлу {filename}. Пропускаємо...")
             continue
 
-        # Змінні для пошуку лідерів
         max_area_shape = shapes[0]
         max_perimeter_shape = shapes[0]
 
         for shape in shapes:
-            # Порівнюємо площу
             if shape.get_area() > max_area_shape.get_area():
                 max_area_shape = shape
 
-            # Порівнюємо периметр
+
             if shape.get_perimeter() > max_perimeter_shape.get_perimeter():
                 max_perimeter_shape = shape
 
-        # Виведення результатів для конкретного файлу
+
         print(f" Найбільша площа:")
         print(f"   Фігура: {max_area_shape}")
         print(f"   Значення: {max_area_shape.get_area():.2f}")
