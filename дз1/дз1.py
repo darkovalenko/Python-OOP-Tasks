@@ -12,20 +12,22 @@ class Shape(ABC):
         pass
 
 
-# --- Етап 2: Класи конкретних фігур ---
 class Triangle(Shape):
     def __init__(self, a, b, c):
         self.a, self.b, self.c = a, b, c
 
     def _is_valid(self):
+
         return (self.a + self.b > self.c) and (self.a + self.c > self.b) and (self.b + self.c > self.a)
 
     def get_perimeter(self):
+
         if not self._is_valid():
             return 0
         return self.a + self.b + self.c
 
     def get_area(self):
+
         if not self._is_valid():
             return 0
 
@@ -105,7 +107,6 @@ class Circle(Shape):
         return f"Круг (радіус: {self.r})"
 
 
-
 def load_shapes_from_file(filename):
     shapes_list = []
     try:
@@ -157,13 +158,13 @@ def main():
         max_perimeter_shape = shapes[0]
 
         for shape in shapes:
+
             if shape.get_area() > max_area_shape.get_area():
                 max_area_shape = shape
 
-
+           
             if shape.get_perimeter() > max_perimeter_shape.get_perimeter():
                 max_perimeter_shape = shape
-
 
         print(f" Найбільша площа:")
         print(f"   Фігура: {max_area_shape}")
